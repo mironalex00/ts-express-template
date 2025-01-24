@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "ES2021", // Compila a una versión moderna de JavaScript
+    "lib": ["ES2021"],
+    "module": "CommonJS", // Usa CommonJS, ideal para Node.js
+    "moduleResolution": "node", // Usa la resolución de módulos estilo Node.js
+    // "lib": ["ES2021"], // Incluye librerías modernas
+    "outDir": "./build", // Especifica el directorio de salida para los archivos compilados
+    "rootDir": "build", // Especifica el directorio raíz del proyecto
+    "declaration": true, // Genera archivos .d.ts para bibliotecas reutilizables
+    "sourceMap": true, // Genera mapas de fuente para depuración
+    "removeComments": true, // Elimina comentarios en los archivos compilados
+    "incremental": true, // Habilita compilación incremental para acelerar la reconstrucción
+    "skipLibCheck": true, // Omite la verificación de tipos en archivos de bibliotecas
+    /* Strict Type-Checking Options */
+    "strict": true, // Habilita todas las verificaciones estrictas
+    "noImplicitAny": true, // Prohíbe el uso de tipos "any" implícitos
+    "strictNullChecks": true, // Requiere verificación explícita de nulos y undefined
+    "strictFunctionTypes": true, // Asegura que los tipos de las funciones sean seguros
+    "strictBindCallApply": true, // Verifica la seguridad de métodos bind, call, y apply
+    "noImplicitThis": true, // Prohíbe "this" implícito en funciones no verificadas
+    "alwaysStrict": true, // Forza `use strict` en los archivos de salida
+    /* Module Resolution Options */
+    "esModuleInterop": true, // Habilita importaciones con `require` en ES6
+    "resolveJsonModule": true, // Permite importar archivos JSON
+    "baseUrl": "./", // Configura la base para la resolución de módulos
+    "paths": {
+      "@app": ["build/main/app.ts"], // Define un alias para el archivo de la aplicación
+      "@middlewares/*": ["build/main/middlewares/*"], // Define alias para los middlewares
+      "@shared/*": ["build/main/shared/*"], // Define alias para los módulos compartidos
+      "@shared-schemas/*": ["build/main/shared/schemas/*"], // Define alias para los módulos compartidos
+      "@lang/*": ["build/main/lang/*"] // Define alias para los archivos de idioma
+    },
+    /* Additional Checks */
+    "forceConsistentCasingInFileNames": true, // Asegura consistencia en el uso de mayúsculas/minúsculas
+    "noFallthroughCasesInSwitch": true, // Prohíbe caer en casos no intencionales en switch
+    "noUnusedLocals": true, // Marca variables locales no usadas como errores
+    "noUnusedParameters": true, // Marca parámetros no usados como errores
+    "noImplicitReturns": true, // Prohíbe rutas de código sin retorno explícito
+    "noUncheckedIndexedAccess": true, // Exige verificación de índice en accesos
+    /* Emit Options */
+    "emitDecoratorMetadata": true, // Incluye metadata de decoradores para frameworks como TypeORM
+    "experimentalDecorators": true, // Habilita soporte para decoradores experimentales
+    "useDefineForClassFields": true // Asegura inicialización de campos según la especificación ES
+  },
+  "include": [
+    "build/**/*.ts",
+    "build/**/*.json"
+  ],
+  "exclude": ["node_modules", "build"] // Excluye carpetas y archivos innecesarios
+}

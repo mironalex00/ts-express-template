@@ -1,0 +1,12 @@
+# build
+node_modules
+build
+
+# . files
+.env
+*.log
+*-lock.*
+
+# Both folder and files to ignore
+*.*build*
+*old*
