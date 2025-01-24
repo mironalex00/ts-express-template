@@ -2,12 +2,11 @@
   "compilerOptions": {
     /* Basic Options */
     "target": "ES2021", // Compila a una versión moderna de JavaScript
-    "lib": ["ES2021"],
+    "lib": ["ES2021"], // Incluye librerías modernas
     "module": "CommonJS", // Usa CommonJS, ideal para Node.js
     "moduleResolution": "node", // Usa la resolución de módulos estilo Node.js
-    // "lib": ["ES2021"], // Incluye librerías modernas
     "outDir": "./build", // Especifica el directorio de salida para los archivos compilados
-    "rootDir": "build", // Especifica el directorio raíz del proyecto
+    "rootDir": "./src", // Especifica el directorio raíz del proyecto
     "declaration": true, // Genera archivos .d.ts para bibliotecas reutilizables
     "sourceMap": true, // Genera mapas de fuente para depuración
     "removeComments": true, // Elimina comentarios en los archivos compilados
@@ -26,11 +25,11 @@
     "resolveJsonModule": true, // Permite importar archivos JSON
     "baseUrl": "./", // Configura la base para la resolución de módulos
     "paths": {
-      "@app": ["build/main/app.ts"], // Define un alias para el archivo de la aplicación
-      "@middlewares/*": ["build/main/middlewares/*"], // Define alias para los middlewares
-      "@shared/*": ["build/main/shared/*"], // Define alias para los módulos compartidos
-      "@shared-schemas/*": ["build/main/shared/schemas/*"], // Define alias para los módulos compartidos
-      "@lang/*": ["build/main/lang/*"] // Define alias para los archivos de idioma
+      "@app": ["src/main/app.ts"], // Define un alias para el archivo de la aplicación
+      "@middlewares/*": ["src/main/middlewares/*"], // Define alias para los middlewares
+      "@shared/*": ["src/main/shared/*"], // Define alias para los módulos compartidos
+      "@shared-schemas/*": ["src/main/shared/schemas/*"], // Define alias para los módulos compartidos
+      "@lang/*": ["src/main/lang/*"] // Define alias para los archivos de idioma
     },
     /* Additional Checks */
     "forceConsistentCasingInFileNames": true, // Asegura consistencia en el uso de mayúsculas/minúsculas
@@ -45,8 +44,8 @@
     "useDefineForClassFields": true // Asegura inicialización de campos según la especificación ES
   },
   "include": [
-    "build/**/*.ts",
-    "build/**/*.json"
+    "src/**/*.ts",
+    "src/**/*.json"
   ],
   "exclude": ["node_modules", "build"] // Excluye carpetas y archivos innecesarios
 }
