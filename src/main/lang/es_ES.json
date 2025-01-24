@@ -1,0 +1,46 @@
+{
+  "errors": {
+    "api": {
+      "notFound": {
+        "code": 404,
+        "message": "Recurso no encontrado"
+      },
+      "internalServerError": {
+        "code": 500,
+        "message": "Error interno del servidor, intente más tarde"
+      }
+    },
+    "app": {
+      "validationSchema": {
+        "httpResponseSchema": {
+          "code": 500,
+          "message": "Error de validación del esquema 'httpResponseSchema'"
+        }
+      }
+    }
+  },
+  "auth": {
+    "api": {
+      "signin": {
+        "ok": {
+          "code": 200,
+          "message": "Inicio de sesión exitoso"
+        },
+        "error": {
+          "code": 401,
+          "message": "Credenciales inválidas"
+        }
+      },
+      "signup": {
+        "ok": {
+          "code": 201,
+          "message": "Usuario creado exitosamente"
+        },
+        "error": {
+          "code": 400,
+          "message": "No se pudo registrar el usuario"
+        }
+      }
+    }
+  }
+}
