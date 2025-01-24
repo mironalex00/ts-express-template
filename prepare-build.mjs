@@ -1,6 +1,6 @@
 //  
 import { readFileSync, renameSync, writeFileSync } from 'node:fs'
-import { basename, dirname, join, parse } from 'node:path'
+import { basename, dirname, join } from 'node:path'
 import { exit } from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { parseJsonSourceFileConfigFileContent, parseJsonText, sys } from 'typescript';
@@ -13,18 +13,19 @@ const __package = "package.json";
 
 //  Schemas
 const loggerLevels = z.enum(['error', 'info', 'warn']);
+const nonEmptyStrSchema = z.string().nonempty().min(1);
 const pathRecordSchema = z.record(
-    z.string().nonempty().min(1),
+    nonEmptyStrSchema,
     z.union([
         z.array(
-            z.string().nonempty().min(1)
+            nonEmptyStrSchema
         ),
-        z.string().nonempty().min(1)
+        nonEmptyStrSchema
     ])
 );
 const tsConfigOptionsSchema = z.object({
     options: z.object({
-        outDir: z.string().nonempty().min(1),
+        outDir: nonEmptyStrSchema,
         paths: pathRecordSchema
     })
 });
@@ -129,7 +130,7 @@ function getProjectJsonFileSync(arg, skipParser = false) {
     try {
         const zodCallBack = (file) => file.endsWith('.json');
         const zodOptions = { expected: "JSON",  message: 'Must be json file' };
-        const fileName = z.string().nonempty().refine(zodCallBack, zodOptions).parse(arg);
+        const fileName = nonEmptyStrSchema.refine(zodCallBack, zodOptions).parse(arg);
         const fileContent = getProjectFileSync(fileName);
         logWarn(`Parsing ${fileName}...`);
         if(!skipParser) return JSON.parse(fileContent);
@@ -171,7 +172,7 @@ function renameProjectFileSync(oldFileName, newFileName) {
     }
 }
 function getProjectFilePath(arg) {
-    const fileName = z.string().nonempty().parse(arg);
+    const fileName = nonEmptyStrSchema.parse(arg);
     return join(__dirname, fileName); 
 }
 //  Log functionality
