@@ -13,7 +13,7 @@ export type EnumValues = StringValue | NumberValue | BooleanValue;
   From array, allows EnumValues type, example: arrayEnum(['one', 2, false])
 */
 export const arrayEnum = (values: [EnumValues, ...Array<EnumValues>]) => {
-  const literals = values.map(value => {
+  const literals = values.map((value) => {
     switch (typeof value) {
       case 'string':
         return literal(value);
@@ -25,7 +25,13 @@ export const arrayEnum = (values: [EnumValues, ...Array<EnumValues>]) => {
         throw new Error(`Unsupported type: ${typeof value}`);
     }
   });
-  return union(literals as [typeof literals[0], typeof literals[0], ...typeof literals])
+  return union(
+    literals as [
+      (typeof literals)[0],
+      (typeof literals)[0],
+      ...typeof literals,
+    ],
+  );
 };
 
 /*
@@ -33,12 +39,25 @@ export const arrayEnum = (values: [EnumValues, ...Array<EnumValues>]) => {
     enum MyEnum { STR: 'Hello World', NUM: 2, BOOL: false }
     arrayEnum(MyEnum)
 */
-export const literalEnum = <T extends Record<string, string | number | boolean>>(enumObj: T) => {
-  const enumValues = Object.values(enumObj).filter(value => {
-    return typeof value === "string" || typeof value === "number" || typeof value === "boolean"
+export const literalEnum = <
+  T extends Record<string, string | number | boolean>,
+>(
+  enumObj: T,
+) => {
+  const enumValues = Object.values(enumObj).filter((value) => {
+    return (
+      typeof value === 'string' ||
+      typeof value === 'number' ||
+      typeof value === 'boolean'
+    );
   });
   if (enumValues.length < 2) {
-    throw new Error("The enum must have at least two unique values.");
+    throw new Error('The enum must have at least two unique values.');
   }
-  return arrayEnum(enumValues as [string | number | boolean, ...Array<string | number | boolean>]);
+  return arrayEnum(
+    enumValues as [
+      string | number | boolean,
+      ...Array<string | number | boolean>,
+    ],
+  );
 };

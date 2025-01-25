@@ -29,9 +29,9 @@ export const METHOD_NOT_ALLOWED = statusSchema.parse({
   code: 405,
   message: 'Method Not Allowed',
 });
-export const CONFLICT = statusSchema.parse({ 
-  code: 409, 
-  message: 'Conflict'
+export const CONFLICT = statusSchema.parse({
+  code: 409,
+  message: 'Conflict',
 });
 export const UNPROCESSABLE_ENTITY = statusSchema.parse({
   code: 422,

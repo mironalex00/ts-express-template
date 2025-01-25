@@ -19,15 +19,10 @@ export default function createLogger() {
       new winston.transports.File({
         filename: join(
           env.LOGGER_PATH,
-          `${
-            env.APP_NAME
-            .toLowerCase()
-            .replaceAll(
-              ' ',
-              '_',
-            )}-error-${
-            getShortDate()
-          }.log`,
+          `${env.APP_NAME.toLowerCase().replaceAll(
+            ' ',
+            '_',
+          )}-error-${getShortDate()}.log`,
         ),
         level: 'error',
       }),
