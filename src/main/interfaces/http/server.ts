@@ -14,9 +14,6 @@ server.use(cors());
 server.use(helmet());
 
 // Routes
-server.get('/', async (_req, res, _next) => {
-  res.status(200).json({ message: 'Ok' });
-});
 
 // Middlewares
 server.all('*', notFoundMiddleware); // 404 Not Found
