@@ -25,11 +25,25 @@
     "resolveJsonModule": true, // Permite importar archivos JSON
     "baseUrl": "./", // Configura la base para la resolución de módulos
     "paths": {
-      "@app": ["src/main/app.ts"], // Define un alias para el archivo de la aplicación
-      "@middlewares/*": ["src/main/middlewares/*"], // Define alias para los middlewares
-      "@shared/*": ["src/main/shared/*"], // Define alias para los módulos compartidos
-      "@shared-schemas/*": ["src/main/shared/schemas/*"], // Define alias para los módulos compartidos
-      "@lang/*": ["src/main/lang/*"] // Define alias para los archivos de idioma
+      //  Files
+      "@logger": ["src/main/infrastructure/logging/logger.ts"], // Input file
+      "@server": ["src/main/interfaces/http/server.ts"], // Input file
+      "@status-codes": ["src/main/shared/utils/status-codes.ts"], // Status codes
+      //  Application
+      "@application/*": ["src/main/application/*"],
+      //  Domain
+      "@domain/*": ["src/main/domain/*"],
+      //  Infrastructure -"src/main/infrastructure/*"
+      "@config/*": ["src/main/infrastructure/config/*"],
+      "@database/*": ["src/main/infrastructure/db/*"],
+      "@controllers/*": ["src/main/interfaces/http/controllers/*"],
+      "@middlewares/*": ["src/main/interfaces/http/middlewares/*"],
+      "@routes/*": ["src/main/interfaces/http/routes/*"],
+      //  Shared
+      "@shared/*": ["src/main/shared/*"],
+      "@shared-types/*": ["src/main/shared/types/*"],
+      "@errors/*": ["src/main/shared/errors/*"],
+      "@utils/*": ["src/main/shared/utils/*"]
     },
     /* Additional Checks */
     "forceConsistentCasingInFileNames": true, // Asegura consistencia en el uso de mayúsculas/minúsculas
@@ -43,9 +57,6 @@
     "experimentalDecorators": true, // Habilita soporte para decoradores experimentales
     "useDefineForClassFields": true // Asegura inicialización de campos según la especificación ES
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.json"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.json"],
   "exclude": ["node_modules", "build"] // Excluye carpetas y archivos innecesarios
 }

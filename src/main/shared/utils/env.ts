@@ -1,5 +1,5 @@
 // Imports
-import { envSchema } from '@shared-schemas/Enviroment';
+import { envSchema } from '@shared-types/env';
 
 // Functions
 export default function loadAndParseEnvConfig() {

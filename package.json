@@ -5,16 +5,27 @@
   "description": "",
   "scripts": {
     "dev": "nodemon",
-    "build": "node ./prepare-build.mjs && npx -p typescript tsc",
-    "start": "node --env-file-if-exists=.env -r module-alias/register build/main/server.js",
+    "prepare-build": "node ./prepare-build.mjs",
+    "build-tsc": "npx -p typescript tsc",
+    "build": "conc \"pnpm run prepare-build\" \"pnpm run build-tsc\" ",
+    "start": "node --env-file-if-exists=.env -r module-alias/register build/main/app.js",
     "test": "jest"
   },
   "_moduleAliases": {
-    "@app": "build/main/app.js",
-    "@middlewares": "build/main/middlewares",
+    "@logger": "build/main/infrastructure/logging/logger.js",
+    "@server": "build/main/interfaces/http/server.js",
+    "@status-codes": "build/main/shared/utils/status-codes.js",
+    "@application": "build/main/application",
+    "@domain": "build/main/domain",
+    "@config": "build/main/infrastructure/config",
+    "@database": "build/main/infrastructure/db",
+    "@controllers": "build/main/interfaces/http/controllers",
+    "@middlewares": "build/main/interfaces/http/middlewares",
+    "@routes": "build/main/interfaces/http/routes",
     "@shared": "build/main/shared",
-    "@shared-schemas": "build/main/shared/schemas",
-    "@lang": "build/main/lang"
+    "@shared-types": "build/main/shared/types",
+    "@errors": "build/main/shared/errors",
+    "@utils": "build/main/shared/utils"
   },
   "keywords": [
     "node",
@@ -28,6 +39,8 @@
     "express": "^4.21.2",
     "helmet": "^8.0.0",
     "module-alias": "^2.2.3",
+    "swagger-ui-express": "^5.0.1",
+    "tsoa": "^6.6.0",
     "winston": "^3.17.0",
     "zod": "^3.24.1"
   },
@@ -36,6 +49,8 @@
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.7",
+    "@types/swagger-ui-express": "^4.1.7",
+    "concurrently": "^9.1.2",
     "dotenv": "^16.4.7",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",

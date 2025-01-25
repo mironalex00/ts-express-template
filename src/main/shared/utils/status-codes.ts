@@ -1,5 +1,5 @@
 //  Import
-import { statusSchema } from '@shared-schemas/HTTPResponses';
+import { statusSchema } from '@shared/types/http/response';
 
 // 2xx
 export const OK = statusSchema.parse({ code: 200, message: 'OK' });
@@ -29,7 +29,10 @@ export const METHOD_NOT_ALLOWED = statusSchema.parse({
   code: 405,
   message: 'Method Not Allowed',
 });
-export const CONFLICT = statusSchema.parse({ code: 409, message: 'Conflict' });
+export const CONFLICT = statusSchema.parse({ 
+  code: 409, 
+  message: 'Conflict'
+});
 export const UNPROCESSABLE_ENTITY = statusSchema.parse({
   code: 422,
   message: 'Unprocessable Entity',
