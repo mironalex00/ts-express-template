@@ -4,14 +4,10 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
+    "postinstall": "node ./index.mjs --action=run-test",
+    "build": "node ./index.mjs --action=build",
     "dev": "nodemon",
-    "prepare-build": "node ./prepare-build.mjs",
-    "build-tsc": "npx -p typescript tsc",
-    "build": "conc \"pnpm run prepare-build\" \"pnpm run lint-and-fix\" \"pnpm run build-tsc\" ",
-    "start": "node --env-file-if-exists=.env -r module-alias/register build/main/app.js",
-    "test": "jest",
-    "lint": "pnpm dlx eslint .",
-    "lint-and-fix": "pnpm dlx eslint . --fix"
+    "start": "node --env-file-if-exists=.env -r module-alias/register build/main/app.js"
   },
   "_moduleAliases": {
     "@logger": "build/main/infrastructure/logging/logger.js",

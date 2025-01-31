@@ -57,6 +57,8 @@
     "experimentalDecorators": true, // Habilita soporte para decoradores experimentales
     "useDefineForClassFields": true // Asegura inicialización de campos según la especificación ES
   },
+  //  Include files
   "include": ["src/**/*.ts", "src/**/*.json"],
+  //  Exclude files
   "exclude": ["node_modules", "build"] // Excluye carpetas y archivos innecesarios
 }
